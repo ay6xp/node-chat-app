@@ -12,15 +12,26 @@ var io = socketIO(server);
 app.use(express.static(publicPath));
 //register event listener, listen for new connection
 io.on('connection', (socket) => {
-  console.log('New user connected');
   //whenever a new user connects
+  console.log('New user connected');
+
+  //sending new message to clients
+  socket.emit('newMessage', {
+    from:'Andrew',
+    text:'Hey this is so cool',
+    createdAt:123
+  });
+
+  //listening for a new message from client
+  socket.on('createMessage',(message)=> {
+    console.log("message", message);
+  });
 
   socket.on('disconnect',() => {
     console.log('client disconnected');
   });
 
 });
-
 
 
 server.listen(port, () => {

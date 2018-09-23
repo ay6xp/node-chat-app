@@ -13,18 +13,7 @@
 //includes code we need to make connections
   </script>
 
-  <script>
-  //used to listen to data from server and sent to server
-  var socket = io();
-  socket.on('connect',() => {
-    console.log("Connected to server");
-  });
-
-  socket.on('disconnect',() => {
-    console.log('Disconnected from server');
-  });
-
-  </script>
+  <script src="/js/index.js">  </script>
 
 </body>
 
