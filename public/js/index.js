@@ -12,7 +12,7 @@ socket.on('connect',function () {
 socket.on('disconnect',function() {
   console.log('Disconnected from server');
 });
-
+//listening for new messages
 socket.on('newMessage', function(newMessage) {
   console.log('newMessage', newMessage);
 });
