@@ -15,6 +15,16 @@ io.on('connection', (socket) => {
   //whenever a new user connects
   console.log('New user connected');
 
+  socket.emit('newMessage', {
+    from: 'admin',
+    text:'welcome to the chat app',
+    createdAt: new Date().getTime()
+  });
+  socket.broadcast.emit('newMessage', {
+    from:'admin',
+    text:'New User joined',
+    createdAt: new Date().getTime()
+  });
 
   //listening for a new message from client
   socket.on('createMessage',(message)=> {
@@ -25,6 +35,12 @@ io.on('connection', (socket) => {
       text:message.text,
       createdAt: new Date().getTime()
     });
+    //will sent everyone message but person who sent it
+    // socket.broadcast.emit('newMessage', {
+    //   from:message.from,
+    //   text:message.text,
+    //   createdAt: new Date().getTime()
+    // });
   });
 
   socket.on('disconnect',() => {
