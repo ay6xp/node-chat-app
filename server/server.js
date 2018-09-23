@@ -15,16 +15,16 @@ io.on('connection', (socket) => {
   //whenever a new user connects
   console.log('New user connected');
 
-  //sending new message to clients
-  socket.emit('newMessage', {
-    from:'Andrew',
-    text:'Hey this is so cool',
-    createdAt:123
-  });
 
   //listening for a new message from client
   socket.on('createMessage',(message)=> {
     console.log("message", message);
+    //io.emit emits an event to every single connection
+    io.emit('newMessage',{
+      from:message.from,
+      text:message.text,
+      createdAt: new Date().getTime()
+    });
   });
 
   socket.on('disconnect',() => {

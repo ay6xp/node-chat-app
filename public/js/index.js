@@ -16,9 +16,3 @@ socket.on('disconnect',function() {
 socket.on('newMessage', function(newMessage) {
   console.log('newMessage', newMessage);
 });
-
-//sending new message to server
-socket.emit('createMessage', {
-  from:"Ahmed",
-  text:"Hey this is fun!"
-});
