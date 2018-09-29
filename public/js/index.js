@@ -15,4 +15,24 @@ socket.on('disconnect',function() {
 //listening for new messages
 socket.on('newMessage', function(newMessage) {
   console.log('newMessage', newMessage);
+  var li = jQuery('<li></li>');
+  li.text(`${newMessage.from}: ${newMessage.text}`);
+  jQuery('#messages').append(li);
+});
+
+// socket.emit('createMessage', {
+//   from:'Frank',
+//   text:'hi'
+// }, function(data) {
+//   console.log('Got it', data);
+// });  //callbackfunction that is emitted when server acknowledges
+
+jQuery('#message-form').on('submit', function(e) {
+  e.preventDefault(); //so page doesnt refesh
+  socket.emit('createMessage', {
+    from:'User',
+    text:jQuery('[name=message]').val()
+  }, function() {
+
+  });
 });
